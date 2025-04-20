@@ -12,5 +12,4 @@ numpy
 plotly
 openpyxl
 joblib
-scikit-learn
 streamlit_option_menu

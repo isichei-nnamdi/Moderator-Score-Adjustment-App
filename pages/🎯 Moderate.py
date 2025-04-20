@@ -5,7 +5,7 @@ import os
 from io import BytesIO
 import plotly.express as px
 
-st.set_page_config(page_title="Moderator Score Adjustment App", layout="centered")
+st.set_page_config(page_title="Score Adjustment App", layout="centered")
 st.title("🎯 Moderator Score Adjustment App")
 
 uploaded_file = st.file_uploader("📤 Step 1: Upload CSV File", type="csv")

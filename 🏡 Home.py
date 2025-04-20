@@ -27,7 +27,7 @@ st.markdown(
 st.markdown('<div class="landing-title">🎯 Moderator Score Adjustment App</div>', unsafe_allow_html=True)
 st.markdown('<div class="landing-sub">An intelligent tool to adjust and standardize scores across sessions.</div>', unsafe_allow_html=True)
 
-st.image("https://images.unsplash.com/photo-1635339821940-2ba8f33fae3e", use_container_width=True)
+# st.image("https://images.unsplash.com/photo-1635339821940-2ba8f33fae3e", use_container_width=True)
 
 st.markdown("### 👋 What This App Does")
 st.markdown(

@@ -73,11 +73,13 @@ if uploaded_file:
             new_df = pd.DataFrame({"New_Scores": result_series})
 
             updated_df[column_to_be_adjusted] = pd.to_numeric(updated_df[column_to_be_adjusted], errors='coerce')
+            adjusted_total_numeric = pd.to_numeric(updated_df["Adjusted Total"], errors='coerce')
 
             # Data for summary statistics
             conditions = [
                 updated_df["Adjustment Note"].str.contains(r'^Adjusted\s+by', case=False, na=False),  # Check if "Adjust by" exists
-                updated_df["Adjustment Note"].str.contains(r'\bNo\s+adjustment\s+needed\b', case=False, na=False),  # If exam value is greater than 40
+                (updated_df["Adjustment Note"].str.contains(r'\bNo\s+adjustment\s+needed\b', case=False, na=False)) & 
+                (adjusted_total_numeric > 40),
                 updated_df[score_columns].isna().any(axis=1)
             ]
 
@@ -120,7 +122,13 @@ if uploaded_file:
 
             # Breakdown of adjusted and non-adjusted students
             st.subheader("Details of Adjusted Students")
-            st.write(updated_df[updated_df["Adjustment Note"].str.contains(r'^Adjusted\s+by', case=False, na=False)])
+            filtered_df = updated_df[
+                (updated_df["Adjustment Note"].str.contains(r'^Adjusted\s+by', case=False, na=False)) |
+                (updated_df["Section"] == selected_session) &
+                (updated_df["comment"] == "Fail")
+            ]
+            st.dataframe(filtered_df)
+
 
             # Display the new scores column adjustment
             updated_df[column_to_be_adjusted] = np.where(

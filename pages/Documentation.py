@@ -19,7 +19,12 @@ st.markdown("""
 The **Moderator Score Adjustment App** is designed to help faculty and course moderators seamlessly adjust candidate scores for assessments based on a predefined threshold. It ensures fairness and consistency in scoring, especially for borderline pass cases. The app allows moderators to update scores within reasonable limits, providing a transparent record of adjustments made.
 
 ---
+""")
 
+# Embed the YouTube video
+st.video("https://youtu.be/S7pK_Pmysvk")
+
+st.markdown("""
 ## 🔄 Workflow
 
 ### 1. **File Upload**

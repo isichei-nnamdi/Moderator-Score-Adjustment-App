@@ -1,6 +1,16 @@
 import streamlit as st
 
-st.set_page_config(page_title="📘 Moderator Score Adjustment App - Documentation", layout="wide")
+st.set_page_config(page_title="📘 Documentation", layout="centered", initial_sidebar_state="collapsed")
+
+# HIDE DEFAULT STREAMLIT NAVIGATION
+hide_nav_style = """
+    <style>
+    [data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(hide_nav_style, unsafe_allow_html=True)
+
+st.page_link("app.py", label="Back to Home", icon="🏠")
 
 st.title("📘 Moderator Score Adjustment App - Documentation")
 

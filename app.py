@@ -137,8 +137,16 @@
 # )
 
 import streamlit as st
+st.set_page_config(page_title="Moderator App", layout="wide", initial_sidebar_state="collapsed")
 
-st.set_page_config(page_title="Welcome", layout="wide")
+# HIDE DEFAULT STREAMLIT NAVIGATION
+hide_nav_style = """
+    <style>
+    [data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(hide_nav_style, unsafe_allow_html=True)
+
 
 # Sidebar Navigation
 st.sidebar.title("📂 Navigation")
@@ -174,8 +182,12 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-# Only show Home Page content if "Home" is selected
-if page == "🏠 Home":
+# Optional: Use switch_page if using multipage structure
+if page == "🎯 Moderate":
+    st.switch_page("pages/Moderate.py")
+elif page == "📘 Documentation":
+    st.switch_page("pages/Documentation.py")
+elif page == "🏠 Home":
     st.markdown(
         """
         <style>
@@ -277,10 +289,3 @@ if page == "🏠 Home":
         """,
         unsafe_allow_html=True
     )
-
-# Optional: Redirect to another file or page if you are not using multipage structure
-elif page == "🎯 Moderate":
-    st.info("🚧 Please go to the 'Moderate' page from the multipage app or switch to `m_score_app.py`.")
-
-elif page == "📘 Documentation":
-    st.info("📄 Documentation coming soon or available on GitHub.")

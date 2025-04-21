@@ -5,7 +5,18 @@ import os
 from io import BytesIO
 import plotly.express as px
 
-st.set_page_config(page_title="Score Adjustment App", layout="centered")
+st.set_page_config(page_title="Moderate", layout="centered", initial_sidebar_state="collapsed")
+
+# HIDE DEFAULT STREAMLIT NAVIGATION
+hide_nav_style = """
+    <style>
+    [data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(hide_nav_style, unsafe_allow_html=True)
+
+st.page_link("app.py", label="Back to Home", icon="🏠")
+
 st.title("🎯 Moderator Score Adjustment App")
 
 uploaded_file = st.file_uploader("📤 Step 1: Upload CSV File", type="csv")

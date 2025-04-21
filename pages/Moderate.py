@@ -90,7 +90,7 @@ if uploaded_file:
             conditions = [
                 updated_df["Adjustment Note"].str.contains(r'^Adjusted\s+by', case=False, na=False),  # Check if "Adjust by" exists
                 (updated_df["Adjustment Note"].str.contains(r'\bNo\s+adjustment\s+needed\b', case=False, na=False)) & 
-                (adjusted_total_numeric > 40),
+                (adjusted_total_numeric >= 40),
                 updated_df[score_columns].isna().any(axis=1)
             ]
 

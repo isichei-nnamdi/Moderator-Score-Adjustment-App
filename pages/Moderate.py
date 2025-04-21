@@ -164,7 +164,7 @@ if uploaded_file:
 
             st.info("If you're satisfied with the moderation, click the button below 👇 to download the moderated result 🤗 and refresh the page to moderate another exams.")
             # Downloadable Excel
-            updated_df_download = updated_df.drop(columns=["Adjusted Total", "Adjustment Note"])
+            updated_df_download = updated_df.drop(columns=["Adjusted Total", "Adjustment Note", "comment"])
             output = BytesIO()
             updated_df_download.to_csv(output, index=False)
             st.download_button(

@@ -365,7 +365,7 @@ if st.button("Moderate Result"):
                 excel_name = f"{base_name}_ModeratedResults.xlsx"
 
                 output = BytesIO()
-                with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+                with pd.ExcelWriter(output, engine="openpyxl") as writer:
                     df_download_export.to_excel(writer, index=False, sheet_name="Moderated Results")
                 processed_data = output.getvalue()
 

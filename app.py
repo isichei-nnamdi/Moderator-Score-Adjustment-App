@@ -248,8 +248,11 @@ elif page == "🏠 Home":
 
     # 🎯 App Title
     st.markdown('<div class="landing-title">🎯 Moderator Score Adjustment App</div>', unsafe_allow_html=True)
-    st.markdown('<div class="landing-sub">An intelligent tool to adjust and standardize scores across sessions.</div>', unsafe_allow_html=True)
+    st.markdown("### An intelligent tool to adjust and standardize scores across sessions.")
 
+    st.write("")
+    st.write("")
+    st.write("")
     # ============================
     # MOODLE MODERATION
     # ============================

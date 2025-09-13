@@ -357,12 +357,18 @@ if st.button("Moderate Result"):
 
         st.success("✅ Moderation complete — download below.")
 
-        # Build dynamic file names based on upload
         if uploaded_file is not None:
-            base_name, ext = os.path.splitext(uploaded_file.name)
+            base_name, _ = os.path.splitext(uploaded_file.name)
 
-            if ext.lower() in [".xls", ".xlsx"]:  # Excel upload
-                excel_name = f"{base_name}_ModeratedResults.xlsx"
+            # Let the user choose the output format
+            download_format = st.radio(
+                "📂 Choose download format:",
+                ("CSV", "Excel (.xlsx)"),
+                horizontal=True
+            )
+
+            if download_format == "Excel (.xlsx)":
+                file_name = f"{base_name}_ModeratedResults.xlsx"
 
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine="openpyxl") as writer:
@@ -372,28 +378,17 @@ if st.button("Moderate Result"):
                 st.download_button(
                     label="⬇️ Download Moderated Excel",
                     data=processed_data,
-                    file_name=excel_name,
+                    file_name=file_name,
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 )
 
-            elif ext.lower() == ".csv":  # CSV upload
-                csv_name = f"{base_name}_ModeratedResults.csv"
+            else:  # CSV
+                file_name = f"{base_name}_ModeratedResults.csv"
 
                 csv_data = df_download_export.to_csv(index=False).encode("utf-8")
                 st.download_button(
                     label="⬇️ Download Moderated CSV",
                     data=csv_data,
-                    file_name=csv_name,
-                    mime="text/csv",
-                )
-
-            else:
-                # fallback: always allow CSV if file type not recognized
-                csv_name = f"{base_name}_ModeratedResults.csv"
-                csv_data = df_download_export.to_csv(index=False).encode("utf-8")
-                st.download_button(
-                    label="⬇️ Download Moderated CSV",
-                    data=csv_data,
-                    file_name=csv_name,
+                    file_name=file_name,
                     mime="text/csv",
                 )

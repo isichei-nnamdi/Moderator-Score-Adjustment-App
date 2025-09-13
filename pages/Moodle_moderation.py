@@ -4,6 +4,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import io
 
+st.set_page_config(page_title="Moderation on Moodle", layout="centered", initial_sidebar_state="collapsed")
+
+# HIDE DEFAULT STREAMLIT NAVIGATION
+hide_nav_style = """
+    <style>
+    [data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(hide_nav_style, unsafe_allow_html=True)
+
+st.page_link("app.py", label="Back to Home", icon="🏠")
+
+
 # --- Helper functions ---
 def round_boundary(score):
     if score in [39, 44, 49, 59, 69]:

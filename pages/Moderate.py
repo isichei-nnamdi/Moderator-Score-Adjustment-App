@@ -5,7 +5,7 @@ import os
 from io import BytesIO
 import plotly.express as px
 
-st.set_page_config(page_title="Moderate", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Moderation on Canvas", layout="centered", initial_sidebar_state="collapsed")
 
 # HIDE DEFAULT STREAMLIT NAVIGATION
 hide_nav_style = """

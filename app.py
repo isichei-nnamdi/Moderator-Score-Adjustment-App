@@ -150,7 +150,7 @@ st.markdown(hide_nav_style, unsafe_allow_html=True)
 
 # Sidebar Navigation
 st.sidebar.title("📂 Navigation")
-page = st.sidebar.radio("Go to", ["🏠 Home", "🎯 Moderate", "📘 Documentation"])
+page = st.sidebar.radio("Go to", ["🏠 Home", "🎯 Moderation on Canvas", "📝 Moderation on Moodle", "📘 Documentation"])
 
 # Sidebar Footer
 st.sidebar.markdown(
@@ -183,8 +183,10 @@ st.sidebar.markdown(
 )
 
 # Optional: Use switch_page if using multipage structure
-if page == "🎯 Moderate":
+if page == "🎯 Moderation on Canvas":
     st.switch_page("pages/Moderate.py")
+elif page == "📝 Moderation on Moodle":
+    st.switch_page("pages/Moodle_moderation.py")
 elif page == "📘 Documentation":
     st.switch_page("pages/Documentation.py")
 elif page == "🏠 Home":

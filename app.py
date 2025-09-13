@@ -253,9 +253,9 @@ elif page == "🏠 Home":
     # ============================
     # MOODLE MODERATION
     # ============================
-    st.markdown("## 🖥️ Moderation on Moodle")
+    st.markdown("#### 🖥️ Moderation on Moodle")
 
-    st.markdown("### 👋 What This App Does")
+    st.markdown("##### 👋 What This App Does")
     st.markdown(
         """
         <div class="landing-note">
@@ -277,7 +277,7 @@ elif page == "🏠 Home":
         unsafe_allow_html=True,
     )
 
-    st.markdown("### 🔧 How to Use (Moodle)")
+    st.markdown("#####🔧 How to Use (Moodle)")
     st.markdown(
         """
         1. Upload a Moodle-exported CSV/Excel file with student scores.  
@@ -292,9 +292,9 @@ elif page == "🏠 Home":
     # ============================
     # CANVAS MODERATION
     # ============================
-    st.markdown("## 🎓 Moderation on Canvas")
+    st.markdown("#### 🎓 Moderation on Canvas")
 
-    st.markdown("### 👋 What This App Does")
+    st.markdown("##### 👋 What This App Does")
     st.markdown(
         """
         <div class="landing-note">
@@ -316,7 +316,7 @@ elif page == "🏠 Home":
         unsafe_allow_html=True,
     )
 
-    st.markdown("### 🔧 How to Use (Canvas)")
+    st.markdown("##### 🔧 How to Use (Canvas)")
     st.markdown(
         """
         1. Upload a Canvas gradebook export file.  

@@ -277,7 +277,7 @@ elif page == "🏠 Home":
         unsafe_allow_html=True,
     )
 
-    st.markdown("#####🔧 How to Use (Moodle)")
+    st.markdown("##### 🔧 How to Use (Moodle)")
     st.markdown(
         """
         1. Upload a Moodle-exported CSV/Excel file with student scores.  

@@ -407,7 +407,13 @@ if st.button("Moderate Result"):
 
         # 🔹 Filter rows: keep only students with non-null scores in all selected columns
         if columns:  # only filter if user selected columns
-            df_download_export = df_download_export.dropna(subset=columns, how="any")
+            # Convert to numeric where possible, errors='coerce' makes non-numeric values into NaN
+            df_selected = df_download_export[columns].apply(pd.to_numeric, errors="coerce")
+
+            # Keep only rows where all selected columns have valid (non-NaN) scores
+            mask = df_selected.notna().all(axis=1)
+            df_download_export = df_download_export[mask]
+
 
         st.success("✅ Moderation complete — download below.")
 

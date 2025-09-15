@@ -345,6 +345,56 @@ if st.button("Moderate Result"):
         # csv = df_download_export.to_csv(index=False).encode("utf-8")
         # st.download_button("Download CSV", csv, "moderated_results.csv", "text/csv")
 
+
+        # # ---------- Prepare downloadable file ----------
+        # df_download = df.copy()
+        # # Ensure the moderated final score is in the selected column (but preserve blanks if they were blanks)
+        # df_download[update_field] = df["ModeratedExamScore"].combine_first(df_download[update_field])
+
+        # # drop helper cols that you don't want in final export (optional)
+        # helper_cols = ["RawScore", "ModeratedTotalScore", "ModeratedExamScore", "BoundaryAdjusted", "Status", "Grade"]
+        # to_drop = [c for c in helper_cols if c in df_download.columns]
+        # df_download_export = df_download.drop(columns=to_drop)
+
+        # st.success("✅ Moderation complete — download below.")
+
+        # if uploaded_file is not None:
+        #     base_name, _ = os.path.splitext(uploaded_file.name)
+
+        #     # Let the user choose the output format
+        #     download_format = st.radio(
+        #         "📂 Choose download format:",
+        #         ("CSV", "Excel (.xlsx)"),
+        #         horizontal=True
+        #     )
+
+        #     if download_format == "Excel (.xlsx)":
+        #         file_name = f"{base_name}_ModeratedResults.xlsx"
+
+        #         output = BytesIO()
+        #         with pd.ExcelWriter(output, engine="openpyxl") as writer:
+        #             df_download_export.to_excel(writer, index=False, sheet_name="Moderated Results")
+        #         processed_data = output.getvalue()
+
+        #         st.download_button(
+        #             label="⬇️ Download Moderated Excel",
+        #             data=processed_data,
+        #             file_name=file_name,
+        #             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        #         )
+
+        #     else:  # CSV
+        #         file_name = f"{base_name}_ModeratedResults.csv"
+
+        #         csv_data = df_download_export.to_csv(index=False).encode("utf-8")
+        #         st.download_button(
+        #             label="⬇️ Download Moderated CSV",
+        #             data=csv_data,
+        #             file_name=file_name,
+        #             mime="text/csv",
+        #         )
+
+
         # ---------- Prepare downloadable file ----------
         df_download = df.copy()
         # Ensure the moderated final score is in the selected column (but preserve blanks if they were blanks)
@@ -354,6 +404,10 @@ if st.button("Moderate Result"):
         helper_cols = ["RawScore", "ModeratedTotalScore", "ModeratedExamScore", "BoundaryAdjusted", "Status", "Grade"]
         to_drop = [c for c in helper_cols if c in df_download.columns]
         df_download_export = df_download.drop(columns=to_drop)
+
+        # 🔹 Filter rows: keep only students with non-null scores in all selected columns
+        if columns:  # only filter if user selected columns
+            df_download_export = df_download_export.dropna(subset=columns, how="any")
 
         st.success("✅ Moderation complete — download below.")
 
@@ -392,3 +446,4 @@ if st.button("Moderate Result"):
                     file_name=file_name,
                     mime="text/csv",
                 )
+
